@@ -6,11 +6,18 @@
     <div class="screen">
       <!-- {{result}} -->
 
-      <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
+      <!-- <div [@openClose]="isOpen === 1 ? 'open' : 'closed'" class="screen-opt">
       </div>
-      <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
+      <div [@openClose]="isOpen === 1 ? 'open' : 'closed'" class="screen-opt">
       </div>
-      <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
+      <div [@openClose]="isOpen === 1 ? 'open' : 'closed'" class="screen-opt">
+      </div> -->
+
+      <div [@openClose]="leftColumn" class="screen-opt">
+      </div>
+      <div [@openClose]="centerColumn" class="screen-opt">
+      </div>
+      <div [@openClose]="rightColumn" class="screen-opt">
       </div>
 
       <!-- <li>
@@ -29,6 +36,9 @@
       </div>
       <button class="btn-spin" (click)="onSpin()">
         SPIN
+      </button>
+      <button class="btn-spin" (click)="toggle()">
+        loop
       </button>
     </div>
   </div>

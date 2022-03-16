@@ -1,3 +1,4 @@
+import { red } from './../../../node_modules/colorette/index.d';
 import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { SlotMachineService } from '../services/slot-machine.service';
@@ -9,43 +10,48 @@ import { SlotMachineService } from '../services/slot-machine.service';
   animations: [
     trigger('openClose', [
       // ...
-      state('open', style({
-        height: '100px',
-        opacity: 0.8,
-        backgroundImage: 'url("../../assets/img-x.png")',
-        backgroundSize: 'cover'
-      })),
-      state('closed', style({
-        height: '100px',
-        opacity: 0.8,
+      state('1', style({
         backgroundImage: 'url("../../assets/img-mercedes.jpeg")',
         backgroundSize: 'cover'
       })),
-      transition('closed => open', [
-        animate('200ms', keyframes([
-          style({transform: 'rotateX(0)'}),
-          style({transform: 'rotateX(90deg)'}),
-          style({transform: 'rotateX(180deg)'}),
-          style({transform: 'rotateX(360deg)'})
-        ]))
-      ]),
-      transition('open => closed', [
-        animate('200ms', keyframes([
-          style({transform: 'rotateX(0)'}),
-          style({transform: 'rotateX(90deg)'}),
-          style({transform: 'rotateX(180deg)'}),
-          style({transform: 'rotateX(360deg)'})
+      state('3', style({
+        backgroundImage: 'url("../../assets/img-x.png")',
+        backgroundSize: 'cover'
+      })),
+      state('2', style({
+        // backgroundImage: 'url("../../assets/img-mercedes.jpeg")',
+        backgroundColor: '#32a852',
+        backgroundSize: 'cover'
+      })),
+      transition('* => *', [
+        animate('250ms', keyframes([
+          style({transform: 'rotateX(0) translateZ(30px)'}),
+          style({transform: 'rotateX(30deg) translateZ(30px)'}),
+          style({transform: 'rotateX(60deg) translateZ(30px)'}),
+          style({transform: 'rotateX(90deg) translateZ(30px)'}),
+          style({transform: 'rotateX(120deg) translateZ(30px)'}),
+          style({transform: 'rotateX(150deg) translateZ(30px)'}),
+          style({transform: 'rotateX(180deg) translateZ(30px)'}),
+          style({transform: 'rotateX(210deg) translateZ(30px)'}),
+          style({transform: 'rotateX(240deg) translateZ(30px)'}),
+          style({transform: 'rotateX(270deg) translateZ(30px)'}),
+          style({transform: 'rotateX(300deg) translateZ(30px)'}),
+          style({transform: 'rotateX(330deg) translateZ(30px)'}),
+          style({transform: 'rotateX(360deg) translateZ(30px)'})
         ]))
       ]),
 
     ]),
   ]
 })
+
 export class SlotMachineComponent implements OnInit {
   points: number = 0;
   selector: number = 0;
   result: string = 'Jogar'
-  isOpen = true;
+  leftColumn: number = 1;
+  centerColumn: number = 1;
+  rightColumn: number = 1;
   spin!: NodeJS.Timeout;
 
   constructor(private slotMachineService: SlotMachineService) { }
@@ -55,7 +61,10 @@ export class SlotMachineComponent implements OnInit {
   toggle() {
     this.spin = setTimeout(() => {
 
-        this.isOpen = !this.isOpen
+        this.leftColumn = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+        this.centerColumn = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+        this.rightColumn = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+
         this.toggle();
     }, 300);
   }
@@ -68,7 +77,7 @@ export class SlotMachineComponent implements OnInit {
 
   onSpin() {
     if (this.points >= 2000) {
-      this.toggle();
+      //this.toggle();
       this.points = this.points - 2000;
       this.slotMachineService.spin(this.selector).subscribe((dados) => {
         this.checkResult(dados.result);
@@ -93,13 +102,18 @@ export class SlotMachineComponent implements OnInit {
   checkResult(resultAPI: boolean) {
 
     if (resultAPI){
-      this.isOpen = false;
+      this.leftColumn = 1;
+      this.centerColumn = 1;
+      this.rightColumn = 1;
       clearTimeout(this.spin);
     this.result = "Você ganhou";
     }
     else
     {
-      this.isOpen = true;
+      this.leftColumn = Math.floor(Math.random() * (3 - 2 + 1)) + 2;
+      this.centerColumn = Math.floor(Math.random() * (3 - 2 + 1)) + 2;
+      this.rightColumn = Math.floor(Math.random() * (3 - 2 + 1)) + 2;
+
       clearTimeout(this.spin);
       this.result = "Você perdeu";
     }
