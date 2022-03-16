@@ -1,0 +1,74 @@
+.slot-machine {
+  margin-top: 30px;
+  width: 200px;
+  height: 300px;
+  background-color: green;
+  border: solid black 1px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.head {
+  margin-top: 20px;
+  height: 52px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.head > span {
+  font-size: 30px;
+}
+
+.body {
+  background-color: blue;
+  height: 212px
+}
+
+.screen {
+  height: 142px;
+  margin: 10px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.screen-opt {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+}
+
+.keyboard {
+  display: flex;
+  padding: 10px;
+  background-color: olive;
+}
+
+.points {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  padding-left: 10px;
+  background-color: orange;
+}
+
+.btn-spin {
+  height: 30px;
+  background-color: aqua;
+}
+
+// animation
+

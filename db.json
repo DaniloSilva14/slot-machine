@@ -1,0 +1,11 @@
+{
+  "account": {
+    "points": 11000
+  },
+  "spinner-0":{
+    "result": false
+  },
+  "spinner-1":{
+    "result": true
+  }
+}
