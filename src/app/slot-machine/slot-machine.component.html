@@ -1,45 +1,28 @@
-<div class="slot-machine">
-  <div class="head">
-    <span>BOA SORTE!</span>
-  </div>
-  <div class="body">
-    <div class="screen">
-      <!-- {{result}} -->
-
-      <!-- <div [@openClose]="isOpen === 1 ? 'open' : 'closed'" class="screen-opt">
-      </div>
-      <div [@openClose]="isOpen === 1 ? 'open' : 'closed'" class="screen-opt">
-      </div>
-      <div [@openClose]="isOpen === 1 ? 'open' : 'closed'" class="screen-opt">
-      </div> -->
-
-      <div [@openClose]="leftColumn" class="screen-opt">
-      </div>
-      <div [@openClose]="centerColumn" class="screen-opt">
-      </div>
-      <div [@openClose]="rightColumn" class="screen-opt">
-      </div>
-
-      <!-- <li>
-            <img src="../../assets/img-x.png" width="40px" id="">
-          </li>
-          <li>
-            <img src="../../assets/img-mercedes.jpeg" width="40px">
-          </li>
-          <li>
-            <img src="../../assets/img-x.png" width="40px">
-          </li> -->
+<div class="container">
+  <div class="slot-machine">
+    <div class="head">
+      <span>BOA SORTE!</span>
     </div>
-    <div class="keyboard">
-      <div class="points">
-        {{points}}
+    <div class="body">
+      <div class="screen">
+        <!-- {{result}} -->
+        <div [@openClose]="leftColumn" class="screen-opt"></div>
+        <div [@openClose]="centerColumn" class="screen-opt"></div>
+        <div [@openClose]="rightColumn" class="screen-opt"></div>
       </div>
-      <button class="btn-spin" (click)="onSpin()">
-        SPIN
-      </button>
-      <button class="btn-spin" (click)="toggle()">
+
+      <div class="keyboard">
+        <div class="points">
+          {{points}}
+        </div>
+        <button class="btn-spin" (click)="onSpin()">
+          SPIN
+        </button>
+        <!-- <button class="btn-spin" (click)="toggle()">
         loop
-      </button>
+      </button> -->
+      </div>
     </div>
   </div>
+  <div [@handle]="played" class="handle" (click)="playHandle()"></div>
 </div>

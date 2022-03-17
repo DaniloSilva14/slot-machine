@@ -1,4 +1,3 @@
-import { red } from './../../../node_modules/colorette/index.d';
 import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { SlotMachineService } from '../services/slot-machine.service';
@@ -42,6 +41,14 @@ import { SlotMachineService } from '../services/slot-machine.service';
       ]),
 
     ]),
+    trigger('handle', [
+      transition('0 => 1', [
+        animate('100ms', keyframes([
+          style({transform: 'translatey(0)'}),
+          style({transform: 'translatey(30px)'}),
+        ]))
+      ]),
+    ])
   ]
 })
 
@@ -49,6 +56,7 @@ export class SlotMachineComponent implements OnInit {
   points: number = 0;
   selector: number = 0;
   result: string = 'Jogar'
+  played: number = 1;
   leftColumn: number = 1;
   centerColumn: number = 1;
   rightColumn: number = 1;
@@ -77,7 +85,6 @@ export class SlotMachineComponent implements OnInit {
 
   onSpin() {
     if (this.points >= 2000) {
-      //this.toggle();
       this.points = this.points - 2000;
       this.slotMachineService.spin(this.selector).subscribe((dados) => {
         this.checkResult(dados.result);
@@ -100,23 +107,27 @@ export class SlotMachineComponent implements OnInit {
   }
 
   checkResult(resultAPI: boolean) {
-
     if (resultAPI){
       this.leftColumn = 1;
       this.centerColumn = 1;
       this.rightColumn = 1;
       clearTimeout(this.spin);
-    this.result = "Você ganhou";
+      this.result = "Você ganhou";
     }
-    else
-    {
+    else {
       this.leftColumn = Math.floor(Math.random() * (3 - 2 + 1)) + 2;
       this.centerColumn = Math.floor(Math.random() * (3 - 2 + 1)) + 2;
       this.rightColumn = Math.floor(Math.random() * (3 - 2 + 1)) + 2;
-
       clearTimeout(this.spin);
       this.result = "Você perdeu";
     }
+    
+    this.played = 1;
+  }
+
+  playHandle(){
+    this.played = 0;
+    this.onSpin();
   }
 
 }
