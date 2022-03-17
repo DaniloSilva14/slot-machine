@@ -42,10 +42,9 @@ import { SlotMachineService } from '../services/slot-machine.service';
 
     ]),
     trigger('handle', [
-      transition('0 => 1', [
-        animate('100ms', keyframes([
-          style({transform: 'translatey(0)'}),
-          style({transform: 'translatey(30px)'}),
+      transition('1 => 0', [
+        animate('1000ms', keyframes([
+          style({transform: 'rotateX(75deg)'})
         ]))
       ]),
     ])
@@ -122,12 +121,14 @@ export class SlotMachineComponent implements OnInit {
       this.result = "Você perdeu";
     }
     
+    console.log(this.result)
     this.played = 1;
   }
 
   playHandle(){
     this.played = 0;
-    this.onSpin();
+    this.toggle();
+    //this.onSpin();
   }
 
 }

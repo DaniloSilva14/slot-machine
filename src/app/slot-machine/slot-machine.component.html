@@ -24,5 +24,14 @@
       </div>
     </div>
   </div>
-  <div [@handle]="played" class="handle" (click)="playHandle()"></div>
+  <div class="alavanca">
+    <div class="caixa1"></div>
+    <div class="caixa2"></div>
+    <div [@handle]="played" 
+      style="padding-bottom: 45px;position: absolute;margin-left: 11px;z-index: 0;cursor: pointer;"  
+      (click)="playHandle()">
+      <div class="handle"></div>
+      <div style="height: 50px; width: 10px; background-color: black;"></div>
+    </div>
+  </div>
 </div>
